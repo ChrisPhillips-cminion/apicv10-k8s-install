@@ -1,0 +1,10 @@
+apiVersion: analytics.apiconnect.ibm.com/v1beta1
+kind: AnalyticsRestore
+metadata:
+  generateName: a7s-restore-
+spec:
+  indices: 
+  - ui
+  backupID: my-backup-id
+  enableIgnoreUnavailable: true
+  enableOverride: false

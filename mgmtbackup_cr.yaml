@@ -1,0 +1,7 @@
+apiVersion: management.apiconnect.ibm.com/v1beta1
+kind: ManagementBackup
+metadata:
+  generateName: mgmt-backup-
+spec:
+  type: full
+  crType: create

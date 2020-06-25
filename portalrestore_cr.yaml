@@ -1,0 +1,7 @@
+apiVersion: portal.apiconnect.ibm.com/v1beta1
+kind: PortalRestore
+metadata:
+  generateName: portal-restore-
+spec:
+  type: system
+  systemName: "_<example_backup_file_with_timestamp>.tar.gz"

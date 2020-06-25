@@ -1,0 +1,6 @@
+apiVersion: management.apiconnect.ibm.com/v1beta1
+kind: ManagementRestore
+metadata:
+  generateName: mgmt-restore-
+spec:
+  backupName: mgmt-backup-

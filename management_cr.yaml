@@ -1,0 +1,44 @@
+apiVersion: management.apiconnect.ibm.com/v1beta1
+kind: ManagementCluster
+metadata:
+  name: management
+spec:
+  appVersion: 10.0.0.0
+  imagePullSecrets:
+  - ibm-entitlement-key
+  imageRegistry: cp.icr.io/cp/apic
+  profile: n1xc4.m16
+  portal:
+    admin:
+      secretName: portal-admin-client
+  analytics:
+    client:
+      secretName: analytics-client-client
+    ingestion:
+      secretName: analytics-ingestion-client
+  cloudManagerEndpoint:
+    hosts:
+    - name: admin.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+      secretName: cm-endpoint
+  apiManagerEndpoint:
+    hosts:
+    - name: manager.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+      secretName: apim-endpoint
+  platformAPIEndpoint:
+    hosts:
+    - name: api.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+      secretName: api-endpoint
+  consumerAPIEndpoint:
+    hosts:
+    - name: consumer.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+      secretName: consumer-endpoint
+  databaseVolumeClaimTemplate:
+    storageClassName: ibmc-block-gold
+    volumeSize: 20Gi
+  microServiceSecurity: custom
+  certManagerIssuer:
+    name: selfsigning-issuer
+    kind: Issuer
+  license:
+    accept: true
+    use: production

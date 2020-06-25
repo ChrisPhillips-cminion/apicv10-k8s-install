@@ -1,0 +1,36 @@
+apiVersion: portal.apiconnect.ibm.com/v1beta1
+kind: PortalCluster
+metadata:
+  name: portal
+spec:
+  appVersion: 10.0.0.0
+  profile: n1xc2.m8
+  imagePullSecrets:
+    - ibm-entitlement-key
+  imageRegistry: cp.icr.io/cp/apic
+  portalAdminEndpoint:
+    hosts:
+    - name: api.portal.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+      secretName: portal-admin
+  portalUIEndpoint:
+    hosts:
+    - name: portal.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+      secretName: portal-web
+  databaseVolumeClaimTemplate:
+    storageClassName: ibmc-block-gold
+  databaseLogsVolumeClaimTemplate:
+    storageClassName: ibmc-block-gold
+  webVolumeClaimTemplate:
+    storageClassName: ibmc-block-gold
+  backupVolumeClaimTemplate:
+    storageClassName: ibmc-block-gold
+  adminVolumeClaimTemplate:
+    storageClassName: ibmc-block-gold
+  adminClientSubjectDN: CN=portal-admin-client,O=cert-manager
+  microServiceSecurity: custom
+  certManagerIssuer:
+    name: selfsigning-issuer
+    kind: Issuer
+  license:
+    accept: true
+    use: production

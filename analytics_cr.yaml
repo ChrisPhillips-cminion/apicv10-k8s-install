@@ -1,0 +1,38 @@
+apiVersion: analytics.apiconnect.ibm.com/v1beta1
+kind: AnalyticsCluster
+metadata:
+  name: analytics
+spec:
+  appVersion: 10.0.0.0
+  license:
+    accept: true
+    use: production
+  profile: n1xc2.m16
+  imagePullSecrets:
+  - ibm-entitlement-key
+  imageRegistry: cp.icr.io/cp/apic
+  microServiceSecurity: custom
+  certManagerIssuer:
+    name: selfsigning-issuer
+    kind: Issuer
+  client:
+    endpoint:
+      hosts:
+      - name: ac.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+        secretName: analytics-ac-endpoint
+    clientSubjectDN: CN=analytics-client-client,O=cert-manager
+  ingestion:
+    endpoint:
+      hosts:
+      - name: ai.v10-k8s2-420eb34f056ae68f3969289d61f61851-0002.eu-gb.containers.appdomain.cloud
+        secretName: analytics-ai-endpoint
+    clientSubjectDN: CN=analytics-ingestion-client,O=cert-manager
+  storage:
+    data:
+      volumeClaimTemplate:
+        storageClassName: ibmc-block-gold
+        volumeSize: 100Gi
+    master:
+      volumeClaimTemplate:
+        storageClassName: ibmc-block-gold
+        volumeSize: 10Gi

@@ -1,0 +1,10 @@
+apiVersion: analytics.apiconnect.ibm.com/v1beta1
+kind: AnalyticsBackup
+metadata:
+  generateName: a7s-bup-
+spec:
+  indices: 
+  - ui
+  enableIgnoreUnavailable: true
+  
+

@@ -1,0 +1,9 @@
+apiVersion: portal.apiconnect.ibm.com/v1beta1
+kind: PortalBackup
+metadata:
+  generateName: portal-bup-
+spec:
+  type: all
+  crType: create
+  comment: "test comment"
+
